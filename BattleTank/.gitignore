@@ -65,6 +65,22 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
+# Custom allowed
 !Content/BattleTank/
 !Content/BattleTank/**/*.uasset
 !Content/BattleTank/**/*.umap
+
+#
+*.sln
+*.xcodeproj
+Makefile
+CMakeLists.txt
+*.target.xml
+*.exe.config
+*.user
+*.pro
+*.pri
+.kdev4/
+.codelite/
+.clang/
+
