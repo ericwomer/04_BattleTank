@@ -71,8 +71,8 @@ DerivedDataCache/*
 !Content/BattleTank/**/*.umap
 
 #
-*.sln
-*.xcodeproj
+/*.sln
+/*.xcodeproj
 Makefile
 CMakeLists.txt
 *.target.xml
@@ -80,7 +80,10 @@ CMakeLists.txt
 *.user
 *.pro
 *.pri
-.kdev4/
-.codelite/
-.clang/
-
+/.kdev4/
+/.codelite/
+/.clang/
+/*.kdev4
+/*.workspace
+/*CodeCompletionFolders.txt
+/*CodeLitePreProcessor.txt
