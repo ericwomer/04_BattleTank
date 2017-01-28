@@ -87,3 +87,4 @@ CMakeLists.txt
 /*.workspace
 /*CodeCompletionFolders.txt
 /*CodeLitePreProcessor.txt
+Content/StarterContent/*
