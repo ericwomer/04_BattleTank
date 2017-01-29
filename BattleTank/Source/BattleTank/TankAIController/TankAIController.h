@@ -19,7 +19,11 @@ public:
   ATank* GetControlledTank() const;
   void BeginPlay() override;
   
-private:	
+private:
+
+ATank* PlayerControlledTank = nullptr;
+
+ATank* GetPlayerTank() const;
 	
 	
 };
