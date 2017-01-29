@@ -15,11 +15,11 @@ void ATankPlayerController::BeginPlay()
   
   if(ControlledTank)
   {
-    UE_LOG(LogTemp, Warning, TEXT("%s is the controlled tank."), *ControlledTank->GetName())
+    UE_LOG(LogTemp, Warning, TEXT("%s is the player controlled tank."), *ControlledTank->GetName())
   }
   else
   {
-    UE_LOG(LogTemp, Error, TEXT("Failed to aquire contrlled tank."))
+    UE_LOG(LogTemp, Error, TEXT("Failed to aquire player contrlled tank."))
   }
 }
 
