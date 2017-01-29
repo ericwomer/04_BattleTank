@@ -8,4 +8,19 @@ ATank* ATankPlayerController::GetControlledTank() const
   return Cast<ATank>(GetPawn());
 }
 
+void ATankPlayerController::BeginPlay() 
+{
+  Super::BeginPlay();
+  ATank* ControlledTank = GetControlledTank();
+  
+  if(ControlledTank)
+  {
+    UE_LOG(LogTemp, Warning, TEXT("%s is the controlled tank."), *ControlledTank->GetName())
+  }
+  else
+  {
+    UE_LOG(LogTemp, Error, TEXT("Failed to aquire contrlled tank."))
+  }
+}
+
 
