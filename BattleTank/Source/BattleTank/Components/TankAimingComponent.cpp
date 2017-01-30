@@ -40,10 +40,51 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
   FVector OutLaunchVelocity;
   FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
   
-  // Caculate the OutLaunchVelocity
+  bool bHighArc = false;
+  float CollisionRadious = 0.0f;
+  float OverrideGravatiyZ = 0.0;
   
-  auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-  UE_LOG(LogTemp, Warning, TEXT("Aiming at %s"), *AimDirection.ToString())
+  // Caculate the OutLaunchVelocity
+    if(UGameplayStatics::SuggestProjectileVelocity(
+      this,
+      OutLaunchVelocity,
+      StartLocation,
+      HitLocation,
+      LaunchSpeed,
+      bHighArc,
+      CollisionRadious,
+      OverrideGravatiyZ,
+      ESuggestProjVelocityTraceOption::DoNotTrace
+    ))
+  {
+    auto AimDirection = OutLaunchVelocity.GetSafeNormal();
+    auto TankName = GetOwner()->GetName();
+    UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *TankName, *AimDirection.ToString())
+  }
+  
+/// BEGIN: Do not delete bellow this line
+//  TArray<AActor*>  ActorsToIgnore;
+//  bool bDebugTrace = false;
+//  if(UGameplayStatics::SuggestProjectileVelocity(
+//      this,
+//      OutLaunchVelocity,
+//      StartLocation,
+//      HitLocation,
+//      LaunchSpeed,
+//      bHighArc,
+//      CollisionRadious,
+//      OverrideGravatiyZ,
+//      ESuggestProjVelocityTraceOption::TraceFullPath,
+//      FCollisionResponseParams::DefaultResponseParam,
+//      ActorsToIgnore,
+//      bDebugTrace
+//    ))
+//  {
+//    auto AimDirection = OutLaunchVelocity.GetSafeNormal();
+//    UE_LOG(LogTemp, Warning, TEXT("Aiming at %s"), *AimDirection.ToString())
+//  }
+/// END: Do not delete bellow this line
+
 }
 
 void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
