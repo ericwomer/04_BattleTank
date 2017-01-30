@@ -38,7 +38,7 @@ void ATankPlayerController::AimTowardsCrosshair()
   FVector HitLocation;
   if(GetSightRayHitLocation(HitLocation))
   {
-    // UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
+    UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
   }
   
   // Get world location if linetrace trough crosshair.
@@ -54,17 +54,15 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
   GetViewportSize(viewportSizeX, viewportSizeY);
   FVector2D CrossHairScreenLocation = FVector2D(viewportSizeX * CrossHairXLocation, viewportSizeY * CrossHairYLocation);
   FVector LookDirection;
+  FVector HitResultLocation;
   
   if (GetLookDirection(CrossHairScreenLocation, LookDirection))
   {
     // Everything working fine, return true.
-    UE_LOG(LogTemp, Warning, TEXT("WorldDirection: %s"), *LookDirection.ToString())
-    return true;
+    
+    // Line-trace along that look direction, and see what we hit (up to the max rannge)
+    GetLookVectorHitLocation(LookDirection, HitLocation);    
   }
-  
-  // Line-trace along that look direction, and see what we hit (up to the max rannge)
-  
-  HitLocation = FVector(1.0);
   return true;
 }
 
@@ -80,3 +78,33 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
   );
   
 }
+
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const
+{
+  FHitResult HitResult;
+  FVector StartLocation = PlayerCameraManager->GetCameraLocation();  
+  FVector EndLocation = StartLocation + LookDirection * LineTraceRange;
+  
+  if(GetWorld()->LineTraceSingleByChannel(
+    HitResult, 
+    StartLocation, 
+    EndLocation, 
+    ECollisionChannel::ECC_Visibility
+    ))
+    {
+        HitLocation = HitResult.Location;
+        return true;
+    }
+    HitLocation = FVector(0);
+ return false;
+}
+
+// UE_LOG(LogTemp, Warning, TEXT("HitResult Actor: %s"), *(HitResult.GetActor()->GetName()))
+
+/*      DrawDebugLine(
+        GetWorld(),
+        StartLocation,
+        EndLocation,
+        FColor(255, 0, 0),
+        false, -1, 0,
+        10.0f);*/

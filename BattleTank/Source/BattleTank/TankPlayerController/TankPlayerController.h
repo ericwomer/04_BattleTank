@@ -21,6 +21,9 @@ private:
     
   UPROPERTY(EditAnywhere)
   float CrossHairYLocation = 0.3333f;
+  
+  UPROPERTY(EditAnywhere)
+  float LineTraceRange = 1000000; // I assume in cm if not convert to M or KM.
     
   virtual void BeginPlay() override;
   virtual void Tick( float DeltaTime ) override;
@@ -28,6 +31,6 @@ private:
 	void AimTowardsCrosshair();
   bool GetSightRayHitLocation(FVector& HitLocation) const;
   bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
-
+  bool GetLookVectorHitLocation(FVector LookDirection,  FVector& HitLocation) const;
     
 };
