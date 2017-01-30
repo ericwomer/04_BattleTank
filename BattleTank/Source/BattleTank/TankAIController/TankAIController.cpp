@@ -52,5 +52,5 @@ ATank* ATankAIController::GetPlayerTank() const
 void ATankAIController::AimTowardsPlayer()
 {
   
-  GetControlledTank()->GetTankAimingComponent()->AimAt(GetPlayerTank()->GetActorLocation());
+  GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 }
