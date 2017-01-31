@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "Components/TankBarrel.h"
+#include "Components/TankTurret.h"
 #include "TankAimingComponent.h"
 
 // Sets default values for this component's properties
@@ -62,6 +63,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
   {
     auto AimDirection = OutLaunchVelocity.GetSafeNormal();
     MoveBarrelTowards(AimDirection);
+    // MoveTurretTowards(AimDirection);
   }
 //  else
 //  {
@@ -100,6 +102,12 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
   Barrel = BarrelToSet;
 }
 
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet) // TODO Left off here: RAKE!
+{
+  if(!TurretToSet) { return; }
+  Turret = TurretToSet;
+}
+
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
   // Work out difference between current barrel rotation and AimDirection
@@ -107,5 +115,17 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
   FRotator AimAsRotation = AimDirection.Rotation();
   FRotator DeltaRotation = AimAsRotation - BarrelRotator;
   
+  Turret->Rotate(DeltaRotation.Yaw);
   Barrel->Elevate(DeltaRotation.Pitch);
+  
+}
+
+void UTankAimingComponent::MoveTurretTowards(FVector AimDirection)
+{
+  // Work out difference between current barrel rotation and AimDirection
+  FRotator TurretRotator = Turret->GetUpVector().Rotation(); // Barrel->GetForwardVector().Rotation();
+  FRotator AimAsRotation = AimDirection.Rotation();
+  FRotator DeltaRotation = AimAsRotation - TurretRotator;
+  
+  Turret->Rotate(DeltaRotation.Yaw);
 }
