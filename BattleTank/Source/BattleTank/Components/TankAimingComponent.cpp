@@ -4,7 +4,6 @@
 #include "Components/TankBarrel.h"
 #include "TankAimingComponent.h"
 
-
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
 {
@@ -52,6 +51,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
     StartLocation,
     HitLocation,
     LaunchSpeed,
+    false,
+    0,
+    0,
     ESuggestProjVelocityTraceOption::DoNotTrace
   );
   
@@ -61,6 +63,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
     auto AimDirection = OutLaunchVelocity.GetSafeNormal();
     MoveBarrelTowards(AimDirection);
   }
+//  else
+//  {
+//    auto Time = GetWorld()->GetTimeSeconds();
+//    UE_LOG(LogTemp, Warning, TEXT("%f: No Aiming Solution Found!"), Time)
+//  }
   
 /// BEGIN: Do not delete bellow this line
 //  TArray<AActor*>  ActorsToIgnore;

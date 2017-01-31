@@ -2,12 +2,15 @@
 
 #pragma once
 
-#include "Components/TankAimingComponent.h"
-
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+/// TODO: Split up barrel and elevator component into seperate objects later so 
+/// it will beable to animate barrel coil later on.
+
+// Forward Declarations
 class UTankBarrel;
+class UTankAimingComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -35,8 +38,6 @@ protected:
   float LaunchSpeed = 100000; // TODO: Find selseable value
   
 private:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
