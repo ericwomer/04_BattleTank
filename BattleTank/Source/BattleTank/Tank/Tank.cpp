@@ -39,9 +39,6 @@ void ATank::SetTurretReference( UTankTurret* TurretToSet)
 
 void ATank::Fire()
 {
-  auto Time = GetWorld()->GetTimeSeconds();
-  auto Name = GetName();
-  UE_LOG(LogTemp, Warning, TEXT("%f: Projectile %s is firing!"), Time, *Name)
  
   bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
   
