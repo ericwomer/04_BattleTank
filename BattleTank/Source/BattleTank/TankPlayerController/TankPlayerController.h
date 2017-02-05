@@ -18,13 +18,13 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 
 private:
   
-  UPROPERTY(EditAnywhere)
+  UPROPERTY(EditDefaultsOnly)
   float CrossHairXLocation = 0.5f;
     
-  UPROPERTY(EditAnywhere)
+  UPROPERTY(EditDefaultsOnly)
   float CrossHairYLocation = 0.3333f;
   
-  UPROPERTY(EditAnywhere)
+  UPROPERTY(EditDefaultsOnly)
   float LineTraceRange = 1000000; // I assume in cm if not convert to M or KM.
     
   virtual void BeginPlay() override;

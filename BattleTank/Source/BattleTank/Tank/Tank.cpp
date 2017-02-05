@@ -23,12 +23,6 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 }
 
-// Called to bind functionality to input
-void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
   if(!BarrelToSet) { return; }
@@ -72,3 +66,8 @@ void ATank::AimAt(FVector HitLocation)
   TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
+// Called to bind functionality to input
+void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}

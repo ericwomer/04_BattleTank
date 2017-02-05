@@ -39,25 +39,27 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-  
-  UTankAimingComponent* TankAimingComponent = nullptr;
-  
+
+private:
+  UPROPERTY(EditDefaultsOnly, Category = Setup)
+  TSubclassOf<AProjectile> ProjectileBlueprint; // TODO[Done?]: Switch to TSubclassOf<> later
+    
   UPROPERTY(EditAnywhere, Category = Firing)
   float LaunchSpeed = 100000; // TODO: Find selseable value
   
-private:	
+  UPROPERTY(EditDefaultsOnly, Category = Firing)
+  float ReloadTimeInSeconds = 3.0f;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UPROPERTY(EditAnywhere, Category = Setup)
-  TSubclassOf<AProjectile> ProjectileBlueprint; // TODO[Done?]: Switch to TSubclassOf<> later
+  UTankAimingComponent* TankAimingComponent = nullptr;
   
   // Local barrel reference
   UTankBarrel* Barrel = nullptr;
   
-  float ReloadTimeInSeconds = 3.0f;
-  
   double LastFireTime = 0;
+  
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
   
 };
