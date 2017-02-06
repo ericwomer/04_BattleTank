@@ -26,6 +26,8 @@ public:
   UFUNCTION(BlueprintCallable, Category = "Tank - Input")
   void IntendMoveRight(float Throw);
 
+  virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
+  
 private:
   UTankTracks* LeftTrack = nullptr;
   UTankTracks* RightTrack = nullptr;

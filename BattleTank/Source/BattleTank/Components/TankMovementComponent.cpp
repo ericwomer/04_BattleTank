@@ -9,7 +9,6 @@ void UTankMovementComponent::Initalise(UTankTracks* Left, UTankTracks* Right)
   if(!Left || !Right) {return;}
   LeftTrack = Left;
   RightTrack = Right;
-  
 }
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
@@ -22,11 +21,20 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendMoveRight(float Throw)
 {
-
   // Todo: Clamp actual throttle
   if(!LeftTrack || !RightTrack) {return;}
   LeftTrack->SetThrottle(Throw);
   RightTrack->SetThrottle(-Throw);
+}
+
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+  
+  auto Time = GetWorld()->GetTimeSeconds();
+  auto OwnerName = GetOwner()->GetName();
+  auto Name = GetName();
+  UE_LOG(LogTemp, Warning, TEXT("%f: %s of %s intends to move at a velocity of %s"), Time, *Name, *OwnerName, *MoveVelocity.ToString())
+  
 }
 
 /*  auto Time = GetWorld()->GetTimeSeconds();

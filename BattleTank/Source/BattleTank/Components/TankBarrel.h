@@ -19,13 +19,13 @@ public:
 	
 private:
   
-  UPROPERTY(EditDefaultsOnly, Category = Setup)
+  UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
   float MaxDegreesPerSecond = 10.0f; // Sensible default MaxDegreesPerSecond
   
-  UPROPERTY(EditDefaultsOnly, Category = Setup)
+  UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
   float MaxElevationDegrees = 40.0f; // Sensible default MaxElevation of barrel
   
-  UPROPERTY(EditDefaultsOnly, Category = Setup)
+  UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
   float MinElevationDegrees = 0.0f; // Sensible default MinElevation of barrel
   
 };
