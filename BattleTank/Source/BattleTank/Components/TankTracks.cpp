@@ -6,7 +6,6 @@
 // Sets the throttal between 1 and -1
 void UTankTracks::SetThrottle(float Throttle)
 {  
-  // Todo: Clamp actual throttle
   // Todo: Key Arrows controlling throttle don't really work right now.
   auto ForceApplied = GetForwardVector() * Throttle * TrackMaxDrivingForce;
   auto ForceLocation = GetComponentLocation();

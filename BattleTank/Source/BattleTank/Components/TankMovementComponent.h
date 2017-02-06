@@ -20,10 +20,12 @@ public:
   UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
   void Initalise(UTankTracks* Left, UTankTracks* Right);
 
-
-  UFUNCTION(BlueprintCallable, Category = TankInput)
+  UFUNCTION(BlueprintCallable, Category = "Tank - Input")
 	void IntendMoveForward(float Throw);
-	
+  
+  UFUNCTION(BlueprintCallable, Category = "Tank - Input")
+  void IntendMoveRight(float Throw);
+
 private:
   UTankTracks* LeftTrack = nullptr;
   UTankTracks* RightTrack = nullptr;
