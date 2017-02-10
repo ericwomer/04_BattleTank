@@ -13,7 +13,6 @@ void UTankMovementComponent::Initalise(UTankTracks* Left, UTankTracks* Right)
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-  // Todo: Clamp actual throttle
   if(!LeftTrack || !RightTrack) {return;}
   LeftTrack->SetThrottle(Throw);
   RightTrack->SetThrottle(Throw);
@@ -21,7 +20,6 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 
 void UTankMovementComponent::IntendMoveRight(float Throw)
 {
-  // Todo: Clamp actual throttle
   if(!LeftTrack || !RightTrack) {return;}
   LeftTrack->SetThrottle(Throw);
   RightTrack->SetThrottle(-Throw);
@@ -29,7 +27,6 @@ void UTankMovementComponent::IntendMoveRight(float Throw)
 
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
 {
-  
   auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
   auto AIForwardIntention = MoveVelocity.GetSafeNormal();
   
@@ -38,8 +35,6 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
   
   auto RightThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
   IntendMoveRight(RightThrow);
-  // UE_LOG(LogTemp, Warning, TEXT("%f: %s of %s intends to move at a velocity of %s"), Time, *Name, *OwnerName, *MoveVelocity.GetSafeNormal().ToString())
-  
 }
 
 /*  auto Time = GetWorld()->GetTimeSeconds();
