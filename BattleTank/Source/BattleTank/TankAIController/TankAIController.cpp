@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "Tank/Tank.h"
+#include "Components/TankAimingComponent.h"
 #include "TankAIController.h"
 
 void ATankAIController::BeginPlay() 
@@ -19,7 +20,7 @@ void ATankAIController::Tick(float DeltaTime)
   if(PlayerTank)
   {
     MoveToActor(PlayerTank, AcceptanceRadius);
-    ControlledTank->AimAt(PlayerTank->GetActorLocation());
-    ControlledTank->Fire(); // Todo: don't fire at every frame.
+    // ControlledTank->GetTankAimingComponent()->AimAt(PlayerTank->GetActorLocation());
+    // ControlledTank->GetTankAimingComponent()->Fire(); // Todo: don't fire at every frame.
   }
 }

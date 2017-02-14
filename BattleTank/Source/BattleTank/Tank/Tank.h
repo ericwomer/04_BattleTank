@@ -7,6 +7,7 @@
 
 /// TODO: Split up barrel and elevator component into seperate objects later so 
 /// it will beable to animate barrel coil later on.
+/// Add back in Hit and Fire?
 
 // Forward Declarations
 class UTankBarrel;
@@ -24,44 +25,10 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
   
-  UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
-  void SetBarrelReference( UTankBarrel* BarrelToSet);
+  // Depricated - Will be removed with next refactor process 
+  // UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
+  // void SetBarrelReference( UTankBarrel* BarrelToSet);
   
-  UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
-  void SetTurretReference( UTankTurret* TurretToSet);
+  // void AimAt(FVector InHitLocation);  
   
-  UFUNCTION(BlueprintCallable, Category = "Tank - Firing")
-  void Fire();
-  
-  void AimAt(FVector HitLocation);
-  
-protected:
-
-  UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
-  UTankAimingComponent* GetTankAimingComponent() { return TankAimingComponent; }
-  
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-  
-private:
-  
-  UTankAimingComponent* TankAimingComponent = nullptr;
-
-  // Local barrel reference
-  UTankBarrel* Barrel = nullptr;
-  
-  UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
-  TSubclassOf<AProjectile> ProjectileBlueprint; // TODO[Done?]: Switch to TSubclassOf<> later
-    
-  UPROPERTY(EditAnywhere, Category = "Tank - Firing")
-  float LaunchSpeed = 100000; // TODO: Find selseable value
-  
-  UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
-  float ReloadTimeInSeconds = 3.0f;
-  
-  double LastFireTime = 0;
-  
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 };
