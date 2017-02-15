@@ -25,6 +25,12 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
   
+  virtual void BeginPlay() override;
+  
+private:
+    UTankMovementComponent* TankMovementComponent = nullptr;
+    UTankAimingComponent* TankAimingComponent = nullptr;
+    
   // Depricated - Will be removed with next refactor process 
   // UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
   // void SetBarrelReference( UTankBarrel* BarrelToSet);
