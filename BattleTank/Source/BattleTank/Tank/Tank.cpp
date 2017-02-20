@@ -1,9 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTank.h"
-#include "Components/TankAimingComponent.h"
 #include "Components/TankBarrel.h"
-#include "Components/TankTurret.h"
 #include "Ammo/Projectile.h"
 #include "Tank.h"
 
@@ -18,14 +16,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay(); // Needed for BP Begin Play to run!
 
-  TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
   Barrel = FindComponentByClass<UTankBarrel>();
-}
-
-void ATank::AimAt(FVector HitLocation)
-{
-	if (!ensure(TankAimingComponent)) { return; }
-	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire()

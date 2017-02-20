@@ -24,7 +24,7 @@ void UTankAimingComponent::Initalise(UTankTurret* InTurret, UTankBarrel* InBarre
 }
 
 //
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation)
 {
   if(!ensure(Barrel)) { return; }
   
@@ -105,4 +105,8 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
   Turret->Rotate(DeltaRotation.Yaw);
   Barrel->Elevate(DeltaRotation.Pitch);
   
+}
+
+void UTankAimingComponent::Fire()
+{
 }

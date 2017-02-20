@@ -8,7 +8,6 @@
 // Depends on movement componentt via path finding
 
 // Forward Declarations
-class ATank;
 
 /**
  * 
