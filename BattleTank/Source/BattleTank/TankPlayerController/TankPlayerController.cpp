@@ -10,18 +10,11 @@ void ATankPlayerController::BeginPlay()
   Super::BeginPlay();
   ATank* ControlledTank = GetControlledTank();
   
-  if(ControlledTank)
-  {
-    UE_LOG(LogTemp, Warning, TEXT("%s is the player controlled tank."), *ControlledTank->GetName())
-  }
-  else
-  {
-    UE_LOG(LogTemp, Error, TEXT("Failed to aquire player contrlled tank."))
-  }
+  if(!ensure(ControlledTank)) { return; }
   
   auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
   
-  if(AimingComponent)
+  if(ensure(AimingComponent))
   {
     FoundAimingComponent(AimingComponent);
   }
@@ -49,12 +42,12 @@ ATank* ATankPlayerController::GetControlledTank() const
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-  if(!GetControlledTank()) { return; }
+  if(!ensure(GetControlledTank())) { return; }
   
   FVector HitLocation;
   if(GetSightRayHitLocation(HitLocation))
   {
-    // GetControlledTank()->GetTankAimingComponent()->AimAt(HitLocation);
+    GetControlledTank()->AimAt(HitLocation);
   }
   
   // Get world location if linetrace trough crosshair.

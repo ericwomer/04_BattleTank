@@ -9,12 +9,11 @@
 /// it will beable to animate barrel coil later on.
 /// Add back in Hit and Fire?
 
-// Forward Declarations
+// Forward declarations
 class UTankBarrel;
-class UTankTurret;
 class UTankAimingComponent;
-class AProjectile;
 class UTankMovementComponent;
+class AProjectile;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -22,19 +21,35 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 
 public:
+	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = "Tank - Firing")
+	void Fire();
+
+protected:
+	UPROPERTY(BlueprintReadOnly)
+	UTankAimingComponent* TankAimingComponent = nullptr;
+
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* TankMovementComponent = nullptr;
+
+private:
 	// Sets default values for this pawn's properties
 	ATank();
-  
-  virtual void BeginPlay() override;
-  
-private:
-    UTankMovementComponent* TankMovementComponent = nullptr;
-    UTankAimingComponent* TankAimingComponent = nullptr;
+
+	virtual void BeginPlay() override;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
+	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
+	float ReloadTimeInSeconds = 3;
     
-  // Depricated - Will be removed with next refactor process 
-  // UFUNCTION(BlueprintCallable, Category = "Tank - Setup")
-  // void SetBarrelReference( UTankBarrel* BarrelToSet);
-  
-  // void AimAt(FVector InHitLocation);  
-  
+	// Local barrel reference for spawning projectile
+	UTankBarrel* Barrel = nullptr; // TODO Remove
+
+	double LastFireTime = 0;
 };
