@@ -18,6 +18,20 @@ void ATankPlayerController::BeginPlay()
   {
     UE_LOG(LogTemp, Error, TEXT("Failed to aquire player contrlled tank."))
   }
+  
+  auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+  
+  if(AimingComponent)
+  {
+    FoundAimingComponent(AimingComponent);
+  }
+  else
+  {
+    auto Name = GetName();
+    auto TankName = ControlledTank->GetName();
+    auto Time = GetWorld()->GetTimeSeconds();
+    UE_LOG(LogTemp, Warning, TEXT("%f: %s failed to aquire AimingComponent for Tank %s"), Time, *Name, *TankName)
+  }
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
