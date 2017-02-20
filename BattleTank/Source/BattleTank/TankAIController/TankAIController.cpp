@@ -17,6 +17,9 @@ void ATankAIController::Tick(float DeltaTime)
   ATank* ControlledTank = Cast<ATank>(GetPawn());
   ATank* PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
   
+  if(!ensure(ControlledTank)) { return; }
+  if(!ensure(PlayerTank)) { return; }
+  
   if(ensure(PlayerTank))
   {
     MoveToActor(PlayerTank, AcceptanceRadius);
@@ -24,3 +27,5 @@ void ATankAIController::Tick(float DeltaTime)
     ControlledTank->Fire(); // Todo: don't fire at every frame.
   }
 }
+
+

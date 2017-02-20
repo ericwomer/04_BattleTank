@@ -26,6 +26,6 @@ public:
 private:
   
   // UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
-  float AcceptanceRadius = 300.0f;
+  float AcceptanceRadius = 3000.0f;
 	
 };

@@ -36,7 +36,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
   float OverrideGravatiyZ = 0.0;
   
   TArray<AActor*>  ActorsToIgnore;
-  bool bDebugTrace = true;
+  bool bDebugTrace = false;
   
   // Caculate the OutLaunchVelocity
   bool bHasAimSolution = UGameplayStatics::SuggestProjectileVelocity(
@@ -48,10 +48,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
     false,
     0,
     0,
-    ESuggestProjVelocityTraceOption::TraceFullPath,
-    FCollisionResponseParams::DefaultResponseParam,
+    ESuggestProjVelocityTraceOption::DoNotTrace /*,
+    FCollisionResponseParams::DefaultResponseParam, FCollisionResponseParams::
     ActorsToIgnore,
-    bDebugTrace
+    bDebugTrace*/
   );
   
   // Test to see if we have a hit solution.
@@ -59,15 +59,15 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
   {
     auto AimDirection = OutLaunchVelocity.GetSafeNormal();
     MoveBarrelTowards(AimDirection);
-    // MoveTurretTowards(AimDirection);
-    // auto Time = GetWorld()->GetTimeSeconds();
-    // UE_LOG(LogTemp, Warning, TEXT("%f: Should be false?"), Time)
+    // UE_LOG(LogTemp, Warning, TEXT("I am here!"))
   }
-  else
+  /*else
   {
     auto Time = GetWorld()->GetTimeSeconds();
-    UE_LOG(LogTemp, Warning, TEXT("%f: No Aiming Solution Found!"), Time)
-  }
+    auto OwnerName = GetOwner()->GetName();
+    auto Name = GetName();
+    UE_LOG(LogTemp, Warning, TEXT("%f: %s of %s No Aiming Solution Found!"), Time, *Name, *OwnerName)
+  }*/
   
 /// BEGIN: Do not delete bellow this line
 //  TArray<AActor*>  ActorsToIgnore;

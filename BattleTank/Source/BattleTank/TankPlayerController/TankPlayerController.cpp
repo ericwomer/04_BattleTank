@@ -5,29 +5,22 @@
 #include "Components/TankAimingComponent.h"
 #include "TankPlayerController.h"
 
-ATankPlayerController::ATankPlayerController()
-{
-  PrimaryActorTick.bCanEverTick = true;
-}
-
 void ATankPlayerController::BeginPlay() 
 {
   Super::BeginPlay();
-  ATank* ControlledTank = GetControlledTank();
-  
-  if(!ensure(ControlledTank)) { return; }
+  // ATank* ControlledTank = GetControlledTank();
   
   auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
   
   if(!ensure(AimingComponent)) {return;}
+  FoundAimingComponent(AimingComponent);
+  
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
-  
   AimTowardsCrosshair();
-    
 }
 
 ATank* ATankPlayerController::GetControlledTank() const
@@ -38,6 +31,8 @@ ATank* ATankPlayerController::GetControlledTank() const
 void ATankPlayerController::AimTowardsCrosshair()
 {
   if(!ensure(GetControlledTank())) { return; }
+  
+  // UE_LOG(LogTemp, Warning, TEXT("I am here!"))
   
   FVector HitLocation;
   if(GetSightRayHitLocation(HitLocation))
