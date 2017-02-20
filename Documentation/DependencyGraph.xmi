@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" xmi.version="1.2" verified="false" timestamp="2017-02-20T15:48:15">
+<XMI xmlns:UML="http://schema.omg.org/spec/UML/1.3" xmi.version="1.2" verified="false" timestamp="2017-02-20T16:08:39">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -75,18 +75,6 @@
         </widgets>
         <messages/>
         <associations>
-         <assocwidget fillcolor="#ffff00" usesdiagramusefillcolor="18" type="502" linewidth="0" totalcountb="2" xmi.id="sNQ92vHUATSp" usefillcolor="1" widgetaid="CNs4elu5sp8V" font="Nimbus Sans L,14,-1,5,50,0,0,0,0,0" seqnum="" widgetbid="NgIBvSEWkyud" linecolor="#ff0000" usesdiagramfillcolor="0" textcolor="none" totalcounta="2" indexa="1" indexb="1">
-          <linepath layout="Polyline">
-           <startpoint startx="-259.368" starty="-1270.88"/>
-           <endpoint endy="-1102.8" endx="-621.757"/>
-          </linepath>
-         </assocwidget>
-         <assocwidget fillcolor="#ffff00" usesdiagramusefillcolor="0" type="502" linewidth="0" totalcountb="2" xmi.id="oohrZU5o9IpY" usefillcolor="1" widgetaid="CNs4elu5sp8V" font="Nimbus Sans L,14,-1,5,50,0,0,0,0,0" seqnum="" widgetbid="XmvZs5E2ueMV" linecolor="#ff0000" usesdiagramfillcolor="0" textcolor="none" totalcounta="2" indexa="1" indexb="1">
-          <linepath layout="Polyline">
-           <startpoint startx="-259.368" starty="-1270.88"/>
-           <endpoint endy="-1102.08" endx="-474.978"/>
-          </linepath>
-         </assocwidget>
          <assocwidget fillcolor="#ffff00" usesdiagramusefillcolor="144" type="502" linewidth="0" totalcountb="2" xmi.id="xTH6l3TPNY7A" usefillcolor="1" widgetaid="kKqWuS6ZVRjz" font="Nimbus Sans L,14,-1,5,50,0,0,0,0,0" seqnum="" widgetbid="BLlQAE0xAU9a" linecolor="#ff0000" usesdiagramfillcolor="0" textcolor="none" totalcounta="2" indexa="1" indexb="1">
           <linepath layout="Polyline">
            <startpoint startx="-539.69" starty="-1406.45"/>

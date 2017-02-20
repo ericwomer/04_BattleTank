@@ -38,15 +38,24 @@ protected:
   EFiringState FiringState = EFiringState::Reloading;
   
 private:
+
+  UPROPERTY(EditDefaultsOnly, Category = "Tank - Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
+	float ReloadTimeInSeconds = 3;
+
+  UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
+	float LaunchSpeed = 4000;
+  
+	double LastFireTime = 0;
 	// Sets default values for this component's properties
-	UTankAimingComponent();
   
   UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
   
-  UPROPERTY(EditDefaultsOnly, Category = "Tank - Firing")
-	float LaunchSpeed = 4000;
-  
+  UTankAimingComponent();
+    
   void MoveBarrelTowards(FVector AimDirection);
 	
 };
