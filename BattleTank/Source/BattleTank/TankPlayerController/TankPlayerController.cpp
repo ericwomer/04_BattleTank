@@ -5,6 +5,11 @@
 #include "Components/TankAimingComponent.h"
 #include "TankPlayerController.h"
 
+ATankPlayerController::ATankPlayerController()
+{
+  PrimaryActorTick.bCanEverTick = true;
+}
+
 void ATankPlayerController::BeginPlay() 
 {
   Super::BeginPlay();
@@ -14,17 +19,7 @@ void ATankPlayerController::BeginPlay()
   
   auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
   
-  if(ensure(AimingComponent))
-  {
-    FoundAimingComponent(AimingComponent);
-  }
-  else
-  {
-    auto Name = GetName();
-    auto TankName = ControlledTank->GetName();
-    auto Time = GetWorld()->GetTimeSeconds();
-    UE_LOG(LogTemp, Warning, TEXT("%f: %s failed to aquire AimingComponent for Tank %s"), Time, *Name, *TankName)
-  }
+  if(!ensure(AimingComponent)) {return;}
 }
 
 void ATankPlayerController::Tick(float DeltaTime)

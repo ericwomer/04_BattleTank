@@ -35,6 +35,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
   float CollisionRadious = 0.0f;
   float OverrideGravatiyZ = 0.0;
   
+  TArray<AActor*>  ActorsToIgnore;
+  bool bDebugTrace = true;
+  
   // Caculate the OutLaunchVelocity
   bool bHasAimSolution = UGameplayStatics::SuggestProjectileVelocity(
     this,
@@ -45,7 +48,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
     false,
     0,
     0,
-    ESuggestProjVelocityTraceOption::DoNotTrace
+    ESuggestProjVelocityTraceOption::TraceFullPath,
+    FCollisionResponseParams::DefaultResponseParam,
+    ActorsToIgnore,
+    bDebugTrace
   );
   
   // Test to see if we have a hit solution.

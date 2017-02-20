@@ -20,7 +20,7 @@ void ATankAIController::Tick(float DeltaTime)
   if(ensure(PlayerTank))
   {
     MoveToActor(PlayerTank, AcceptanceRadius);
-    // ControlledTank->GetTankAimingComponent()->AimAt(PlayerTank->GetActorLocation());
-    // ControlledTank->GetTankAimingComponent()->Fire(); // Todo: don't fire at every frame.
+    ControlledTank->AimAt(PlayerTank->GetActorLocation());
+    ControlledTank->Fire(); // Todo: don't fire at every frame.
   }
 }
